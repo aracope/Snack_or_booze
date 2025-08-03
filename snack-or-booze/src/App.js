@@ -5,8 +5,8 @@ import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
 import { Route, Switch } from "react-router-dom";
-import Menu from "./FoodMenu";
-import Snack from "./FoodItem";
+import ItemList from "./ItemList";
+import ItemDetails from "./ItemDetails";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
