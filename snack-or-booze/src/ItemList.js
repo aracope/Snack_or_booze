@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 
 /** Generic menu list component for snacks/drinks */
-function ItemList({ items }) {
+function ItemList({ items, title, baseUrl }) {
   return (
     <section className="col-md-4">
       <Card>

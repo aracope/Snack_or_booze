@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Home from "./Home";
 import SnackOrBoozeApi from "./Api";
 import NavBar from "./NavBar";
-import { Route, Switch } from "react-router-dom";
 import ItemList from "./ItemList";
 import ItemDetails from "./ItemDetails";
+import AddItemForm from "./AddItemForm";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
+  const [drinks, setDrinks] = useState([]);
 
   useEffect(() => {
-    async function getSnacks() {
-      let snacks = await SnackOrBoozeApi.getSnacks();
-      setSnacks(snacks);
-      setIsLoading(false);
+    async function fetchData() {
+      try {
+        const snacks = await SnackOrBoozeApi.getSnacks();
+        const drinks = await SnackOrBoozeApi.getDrinks();
+        setSnacks(snacks);
+        setDrinks(drinks);
+        setIsLoading(false);
+      } catch (err) {
+        console.error("fetch error:", err);
+      }
     }
-    getSnacks();
+    fetchData();
   }, []);
 
   if (isLoading) {
@@ -32,13 +39,22 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/">
-              <Home snacks={snacks} />
+              <Home snacks={snacks} drinks={drinks} />
             </Route>
             <Route exact path="/snacks">
-              <Menu snacks={snacks} title="Snacks" />
+              <ItemList items={snacks} title="Snacks" baseUrl="snacks" />
+            </Route>
+            <Route exact path="/drinks">
+              <ItemList items={drinks} title="Drinks" baseUrl="drinks" />
             </Route>
             <Route path="/snacks/:id">
-              <Snack items={snacks} cantFind="/snacks" />
+              <ItemDetails items={snacks} cantFind="/snacks" />
+            </Route>
+            <Route exact path="/drinks/:id">
+              <ItemDetails items={drinks} cantFind="/drinks" />
+            </Route>
+            <Route exact path="/add">
+              <AddItemForm setSnacks={setSnacks} setDrinks={setDrinks} />
             </Route>
             <Route>
               <p>Hmmm. I can't seem to find what you want.</p>
