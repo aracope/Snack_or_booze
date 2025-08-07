@@ -3,6 +3,13 @@ import "./NavBar.css";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 
+/**
+ * Navigation bar for the app.
+ *
+ * Uses React Router <NavLink> for navigation.
+ * Links to: Home, Snacks, Drinks, Add Item.
+ */
+
 function NavBar() {
   return (
     <div>

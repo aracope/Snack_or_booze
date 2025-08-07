@@ -8,11 +8,21 @@ import ItemList from "./ItemList";
 import ItemDetails from "./ItemDetails";
 import AddItemForm from "./AddItemForm";
 
+/**
+ * Main application component.
+ * 
+ * Responsibilities:
+ * - Manage snack and drink state
+ * - Load data from API
+ * - Define all routes
+ */
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [snacks, setSnacks] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
+  /** Load snack and drink data on mount */
   useEffect(() => {
     async function fetchData() {
       try {
@@ -56,6 +66,7 @@ function App() {
             <Route exact path="/add">
               <AddItemForm setSnacks={setSnacks} setDrinks={setDrinks} />
             </Route>
+            {/* Fallback route for 404s */}
             <Route>
               <p>Hmmm. I can't seem to find what you want.</p>
             </Route>

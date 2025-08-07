@@ -2,7 +2,17 @@ import React from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardText } from "reactstrap";
 
-/** Generic item detail component for snack or drink */
+/**
+ * Generic component for displaying details of a single item.
+ * 
+ * Props:
+ * - items: array of snacks or drinks
+ * - cantFind: redirect path if item is not found
+ * 
+ * Uses useParams() to grab item ID from URL.
+ * If item not found, redirects to fallback.
+ */
+
 function ItemDetails({ items, cantFind }) {
   const { id } = useParams();
 

@@ -10,7 +10,17 @@ import {
   ListGroupItem,
 } from "reactstrap";
 
-/** Generic menu list component for snacks/drinks */
+/**
+ * Generic component for listing snacks or drinks.
+ *
+ * Props:
+ * - items: array of items to display
+ * - title: title for the menu
+ * - baseUrl: base URL for item type (e.g. "snacks" or "drinks")
+ *
+ * Displays a clickable list of all items.
+ */
+
 function ItemList({ items, title, baseUrl }) {
   return (
     <section className="col-md-4">
