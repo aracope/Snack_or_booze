@@ -65,6 +65,7 @@ function AddItemForm({ setSnacks, setDrinks }) {
       <FormGroup>
         <Label for="type">Type</Label>
         <Input
+          id="type"
           type="select"
           name="type"
           value={formData.type}
@@ -81,7 +82,12 @@ function AddItemForm({ setSnacks, setDrinks }) {
           <Label for={field}>
             {field.charAt(0).toUpperCase() + field.slice(1)}
           </Label>
-          <Input name={field} value={formData[field]} onChange={handleChange} />
+          <Input
+            id={field}
+            name={field}
+            value={formData[field]}
+            onChange={handleChange}
+          />
         </FormGroup>
       ))}
       <Button>Add Item</Button>
